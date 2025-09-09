@@ -323,11 +323,12 @@ docker-compose -f docker/docker-compose.yml up -d
 # Run your own LiteLLM instance
 docker run -d \
   --name litellm-external \
-  -p 4000:4000 \
   -v $(pwd)/custom-config.yaml:/app/config.yaml \
   -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
   ghcr.io/berriai/litellm:main \
   --config /app/config.yaml
+# Optional: expose port if accessing outside Docker network
+#  -p 4000:4000 \
 
 # Then start Bytebot with:
 export BYTEBOT_LLM_PROXY_URL=http://localhost:4000
