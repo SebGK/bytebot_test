@@ -31,3 +31,5 @@
    - API‑Keys und Secrets in Secret‑Managern oder verschlüsselten `.env`‑Dateien verwalten.
 9. **Betrieb & Monitoring**
    - Firewall‑Regeln, IDS/IPS und System‑Updates automatisieren sowie regelmäßige Penetrationstests durchführen.
+
+Alle oben genannten Maßnahmen wurden implementiert; Details zum Umsetzungsstatus finden sich in [Security.md](Security.md).
