@@ -27,6 +27,7 @@ app
     const vncProxy = createProxyServer({ changeOrigin: true, ws: true });
 
     const expressApp = express();
+    expressApp.disable("x-powered-by");
     const server = createServer(expressApp);
 
     // WebSocket proxy for Socket.IO connections to backend
