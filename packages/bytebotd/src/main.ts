@@ -6,6 +6,8 @@ import { json, urlencoded } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // Disable Express "X-Powered-By" header to avoid information disclosure
+  app.getHttpAdapter().getInstance().disable('x-powered-by');
 
   // Configure body parser with increased payload size limit (50MB)
   app.use(json({ limit: '50mb' }));
