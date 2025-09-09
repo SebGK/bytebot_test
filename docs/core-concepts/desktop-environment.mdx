@@ -208,9 +208,7 @@ deploy:
    environment:
      - ALLOWED_DOMAINS=company.com,trusted-site.com
    
-   # Or restrict to local network only
-   ports:
-     - "10.0.0.0/8:9990:9990"
+   # Services are kept internal by default; use VPN or reverse proxy for external access
    ```
 
 ## Troubleshooting

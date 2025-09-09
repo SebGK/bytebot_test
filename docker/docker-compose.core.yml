@@ -13,7 +13,5 @@ services:
     restart: unless-stopped
     hostname: computer
     privileged: true
-    ports:
-      - "9990:9990" # bytebotd service & noVNC
     environment:
       - DISPLAY=:0

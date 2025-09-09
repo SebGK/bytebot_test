@@ -36,8 +36,8 @@ tolerations: []
 affinity: {}
 
 auth:
-  username: postgres
-  password: postgres
+  username: bytebot
+  password: change-me-please # replace with a strong unique password
   database: bytebotdb
 
 config:

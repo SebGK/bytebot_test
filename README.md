@@ -84,10 +84,15 @@ Just click and add your AI provider API key.
 git clone https://github.com/bytebot-ai/bytebot.git
 cd bytebot
 
-# Add your AI provider key (choose one)
-echo "ANTHROPIC_API_KEY=sk-ant-..." > docker/.env
-# Or: echo "OPENAI_API_KEY=sk-..." > docker/.env
-# Or: echo "GEMINI_API_KEY=..." > docker/.env
+# Add database credentials and your AI provider key (choose one)
+cat <<'EOF' > docker/.env
+POSTGRES_USER=bytebot
+POSTGRES_PASSWORD=replace-with-strong-password
+POSTGRES_DB=bytebotdb
+ANTHROPIC_API_KEY=sk-ant-...
+# Or: OPENAI_API_KEY=sk-...
+# Or: GEMINI_API_KEY=...
+EOF
 
 docker-compose -f docker/docker-compose.yml up -d
 
