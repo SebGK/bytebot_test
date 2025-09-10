@@ -22,7 +22,8 @@
             "pages": [
               "guides/task-creation",
               "guides/password-management",
-              "guides/takeover-mode"
+              "guides/takeover-mode",
+              "guides/nanobrowser-integration"
             ]
           },
           {

@@ -1,0 +1,55 @@
+---
+title: "Nanobrowser Integration Plan"
+description: "Development plan to incorporate Nanobrowser for more reliable web automation in Bytebot"
+---
+
+# Nanobrowser Integration Plan
+
+This document outlines how Bytebot can integrate the features of the [Nanobrowser](https://github.com/nanobrowser/nanobrowser) project to improve the reliability of browser-based tasks while keeping desktop automation capabilities.
+
+## Objectives
+
+- Use Nanobrowser's DOM-based automation to avoid flaky pixel interactions.
+- Delegate web-specific tasks to Nanobrowser while Bytebot continues orchestrating desktop actions.
+- Maintain modularity so Nanobrowser can be updated or replaced without affecting core Bytebot services.
+
+## Proposed Architecture
+
+1. **Browser Automation Module**
+   - Introduce a dedicated service (e.g., `browser-automation.service`) that communicates with the Nanobrowser extension.
+   - The `TasksService` routes web-related subtasks to this service while other tasks remain in the existing desktop flow.
+
+2. **Chrome Extension Deployment**
+   - Launch the virtual desktop's Chrome/Edge with the Nanobrowser extension preinstalled.
+   - Exchange commands and status updates using `chrome.runtime` messages or the Chrome DevTools Protocol.
+
+3. **Multi-Agent Planning**
+   - Leverage Nanobrowser's Planner/Navigator pair for detailed DOM navigation and self-correction.
+   - Bytebot acts as the top-level coordinator that schedules tasks and processes outputs from Nanobrowser.
+
+4. **Fallback Handling**
+   - If Nanobrowser encounters an unrecoverable error, the desktop agent can revert to its existing browser automation approach.
+
+## Implementation Steps
+
+1. Add Nanobrowser repository as a dependency or submodule.
+2. Create `browser-automation.service` in the NestJS layer for message handling.
+3. Modify `TasksService` to detect and delegate web tasks.
+4. Update the desktop container image to include Chrome with the Nanobrowser extension.
+5. Implement a socket or message bridge for communication between Bytebot and the extension.
+6. Integrate Nanobrowser status updates into the Bytebot web UI for progress transparency.
+
+## Open Questions
+
+- How should authentication data (cookies, credentials) be shared between Bytebot and the Nanobrowser-controlled browser?
+- What is the best strategy for versioning and updating the extension within the container image?
+- Can Nanobrowser's planner be reused for non-browser workflows in the future?
+
+## Next Steps
+
+1. Prototype the extension in the desktop container and validate communication.
+2. Build a minimal `browser-automation.service` that can navigate to a URL via Nanobrowser.
+3. Expand task delegation logic and add comprehensive error reporting.
+
+By following this plan, developers can incrementally adopt Nanobrowser's reliable web automation while preserving Bytebot's broader desktop capabilities.
+
